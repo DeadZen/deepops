@@ -1,5 +1,6 @@
 #!/bin/bash
 
+kubectl -n rook-ceph patch cephclusters.ceph.rook.io rook-ceph -p '{"metadata":{"finalizers": []}}' --type=merge
 kubectl delete -f services/rook-cluster.yml
 helm del --purge rook-ceph
 kubectl -n rook-ceph delete cephcluster rook-ceph
